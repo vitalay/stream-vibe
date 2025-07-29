@@ -65,7 +65,7 @@ export default defineConfig({
   resolve: {
     alias: [{
       find: "@/",
-      replacement: path resolve('src') + '/',
+      replacement: path.resolve('src') + '/',
     }], 
     
   },
@@ -78,7 +78,12 @@ export default defineConfig({
       localsConvention: "camelCaseOnly",
     },
     preprocessorOptions: {
-      scss: {},
+      scss: {
+        additionalData: `
+          @use '@/styles/helpers' as *;
+        `,
+        silenceDeprecations: ['legacy-js-api'],
+      },
       less: {},
       stylus: {},
     },
